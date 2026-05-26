@@ -77,7 +77,7 @@ HomeMaticHomeKitWeatherStationServiceIP.prototype.propagateServices = function (
     var charUUID = uuid.generate('HomeMatic:customchar:WindDirectionCharacteristic')
     Characteristic.call(this, 'Wind Richtung', charUUID)
     this.setProps({
-      format: Characteristic.Formats.INTEGER,
+      format: Characteristic.Formats.INT,
       unit: 'Grad',
       perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
     })
@@ -97,7 +97,7 @@ HomeMaticHomeKitWeatherStationServiceIP.prototype.propagateServices = function (
     var charUUID = uuid.generate('HomeMatic:customchar:WindRangeCharacteristic')
     Characteristic.call(this, 'Wind Schwankungsbreite', charUUID)
     this.setProps({
-      format: Characteristic.Formats.INTEGER,
+      format: Characteristic.Formats.INT,
       unit: 'Grad',
       perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
     })

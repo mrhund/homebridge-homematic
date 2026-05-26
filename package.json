@@ -1,6 +1,6 @@
 {
   "name": "homebridge-homematic",
-  "version": "0.2.226",
+  "version": "0.2.229",
   "description": "Homematic plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [
@@ -23,7 +23,7 @@
     "ip": "^1.1.3",
     "google-auth-library": "5.9.2",
     "googleapis": "47.0.0",
-    "fakegato-history": "0.5.6",
+    "fakegato-history": "0.6.7",
     "sprintf-js": "^1.0.3"
   },
   "devDependencies": {

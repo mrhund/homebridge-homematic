@@ -23,6 +23,10 @@ module.exports = function (homebridge) {
   uuid = homebridge.hap.uuid
   Service = homebridge.hap.Service
   Characteristic = homebridge.hap.Characteristic
+  // Homebridge 2.0 compatibility: Formats and Perms were moved out of Characteristic
+  if (!Characteristic.Formats) Characteristic.Formats = homebridge.hap.Formats
+  if (!Characteristic.Perms) Characteristic.Perms = homebridge.hap.Perms
+  if (!Characteristic.Units) Characteristic.Units = homebridge.hap.Units
   homebridge.registerPlatform('homebridge-homematic', 'HomeMatic', HomeMaticPlatform)
 }
 

@@ -55,13 +55,13 @@ module.exports = class EveHomeKitTypes extends CustomHomeKitTypes {
     }, 'Electric Power')
 
     this.createCharacteristic('TotalConsumption', 'E863F10C-079E-48FF-8F27-9C2605A29F52', {
-      format: hap.Characteristic.Formats.UInt16,
+      format: hap.Characteristic.Formats.UINT16,
       unit: 'kWh',
       perms: [hap.Characteristic.Perms.READ, hap.Characteristic.Perms.NOTIFY]
     }, 'Total Consumption')
 
     this.createCharacteristic('Voltage', 'E863F10A-079E-48FF-8F27-9C2605A29F52', {
-      format: hap.Characteristic.Formats.UInt16,
+      format: hap.Characteristic.Formats.UINT16,
       unit: 'V',
       perms: [hap.Characteristic.Perms.READ, hap.Characteristic.Perms.NOTIFY]
     })
