@@ -10,13 +10,13 @@ function HomeMaticHomeKitDoorService (log, platform, id, name, type, adress, spe
 util.inherits(HomeMaticHomeKitDoorService, HomeKitGenericService)
 
 HomeMaticHomeKitDoorService.prototype.propagateServices = function (homebridge, Service, Characteristic) {
-  Service.DoorStateService = function (displayName, subtype) {
-    Service.call(this, displayName, '5243F2EA-006C-4D68-83A0-4AF6F606136C', subtype)
-    this.addCharacteristic(Characteristic.CurrentDoorState)
-    this.addOptionalCharacteristic(Characteristic.Name)
+  Service.DoorStateService = class extends Service {
+    constructor (displayName, subtype) {
+      super(displayName, '5243F2EA-006C-4D68-83A0-4AF6F606136C', subtype)
+      this.addCharacteristic(Characteristic.CurrentDoorState)
+      this.addOptionalCharacteristic(Characteristic.Name)
+    }
   }
-
-  util.inherits(Service.DoorStateService, Service)
 }
 
 HomeMaticHomeKitDoorService.prototype.createDeviceService = function (Service, Characteristic) {

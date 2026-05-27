@@ -12,85 +12,89 @@ util.inherits(HomeMaticHomeKitWeatherStationService, HomeKitGenericService)
 HomeMaticHomeKitWeatherStationService.prototype.propagateServices = function (homebridge, Service, Characteristic) {
   var uuid = homebridge.uuid
 
-  Characteristic.IsRainingCharacteristic = function () {
-    var charUUID = uuid.generate('HomeMatic:customchar:IsRainingCharacteristic')
-    Characteristic.call(this, 'Regen', charUUID)
-    this.setProps({
-      format: Characteristic.Formats.BOOL,
-      perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
-    })
-    this.value = this.getDefaultValue()
-  }
-  util.inherits(Characteristic.IsRainingCharacteristic, Characteristic)
-
-  Service.IsRainingService = function (displayName, subtype) {
-    var servUUID = uuid.generate('HomeMatic:customchar:IsRainingService')
-    Service.call(this, displayName, servUUID, subtype)
-    this.addCharacteristic(Characteristic.IsRainingCharacteristic)
+  Characteristic.IsRainingCharacteristic = class extends Characteristic {
+    constructor () {
+      var charUUID = uuid.generate('HomeMatic:customchar:IsRainingCharacteristic')
+      super('Regen', charUUID)
+      this.setProps({
+        format: Characteristic.Formats.BOOL,
+        perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
+      })
+      this.value = this.getDefaultValue()
+    }
   }
 
-  util.inherits(Service.IsRainingService, Service)
-
-  Characteristic.WindSpeedCharacteristic = function () {
-    var charUUID = uuid.generate('HomeMatic:customchar:WindSpeedCharacteristic')
-    Characteristic.call(this, 'Wind Geschwindigkeit', charUUID)
-    this.setProps({
-      format: Characteristic.Formats.FLOAT,
-      unit: 'km/h',
-      minStep: 0.1,
-      perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
-    })
-    this.value = this.getDefaultValue()
-  }
-  util.inherits(Characteristic.WindSpeedCharacteristic, Characteristic)
-
-  Service.WindSpeedService = function (displayName, subtype) {
-    var servUUID = uuid.generate('HomeMatic:customchar:WindSpeedService')
-    Service.call(this, displayName, servUUID, subtype)
-    this.addCharacteristic(Characteristic.WindSpeedCharacteristic)
+  Service.IsRainingService = class extends Service {
+    constructor (displayName, subtype) {
+      var servUUID = uuid.generate('HomeMatic:customchar:IsRainingService')
+      super(displayName, servUUID, subtype)
+      this.addCharacteristic(Characteristic.IsRainingCharacteristic)
+    }
   }
 
-  util.inherits(Service.WindSpeedService, Service)
+  Characteristic.WindSpeedCharacteristic = class extends Characteristic {
+    constructor () {
+      var charUUID = uuid.generate('HomeMatic:customchar:WindSpeedCharacteristic')
+      super('Wind Geschwindigkeit', charUUID)
+      this.setProps({
+        format: Characteristic.Formats.FLOAT,
+        unit: 'km/h',
+        minStep: 0.1,
+        perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
+      })
+      this.value = this.getDefaultValue()
+    }
+  }
 
-  Characteristic.WindDirectionCharacteristic = function () {
-    var charUUID = uuid.generate('HomeMatic:customchar:WindDirectionCharacteristic')
-    Characteristic.call(this, 'Wind Richtung', charUUID)
-    this.setProps({
+  Service.WindSpeedService = class extends Service {
+    constructor (displayName, subtype) {
+      var servUUID = uuid.generate('HomeMatic:customchar:WindSpeedService')
+      super(displayName, servUUID, subtype)
+      this.addCharacteristic(Characteristic.WindSpeedCharacteristic)
+    }
+  }
+
+  Characteristic.WindDirectionCharacteristic = class extends Characteristic {
+    constructor () {
+      var charUUID = uuid.generate('HomeMatic:customchar:WindDirectionCharacteristic')
+      super('Wind Richtung', charUUID)
+      this.setProps({
         format: Characteristic.Formats.INT,
-      unit: 'Grad',
-      perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
-    })
-    this.value = this.getDefaultValue()
-  }
-  util.inherits(Characteristic.WindDirectionCharacteristic, Characteristic)
-
-  Service.WindDirectionService = function (displayName, subtype) {
-    var servUUID = uuid.generate('HomeMatic:customchar:WindDirectionService')
-    Service.call(this, displayName, servUUID, subtype)
-    this.addCharacteristic(Characteristic.WindDirectionCharacteristic)
+        unit: 'Grad',
+        perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
+      })
+      this.value = this.getDefaultValue()
+    }
   }
 
-  util.inherits(Service.WindDirectionService, Service)
+  Service.WindDirectionService = class extends Service {
+    constructor (displayName, subtype) {
+      var servUUID = uuid.generate('HomeMatic:customchar:WindDirectionService')
+      super(displayName, servUUID, subtype)
+      this.addCharacteristic(Characteristic.WindDirectionCharacteristic)
+    }
+  }
 
-  Characteristic.WindRangeCharacteristic = function () {
-    var charUUID = uuid.generate('HomeMatic:customchar:WindRangeCharacteristic')
-    Characteristic.call(this, 'Wind Schwankungsbreite', charUUID)
-    this.setProps({
+  Characteristic.WindRangeCharacteristic = class extends Characteristic {
+    constructor () {
+      var charUUID = uuid.generate('HomeMatic:customchar:WindRangeCharacteristic')
+      super('Wind Schwankungsbreite', charUUID)
+      this.setProps({
         format: Characteristic.Formats.INT,
-      unit: 'Grad',
-      perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
-    })
-    this.value = this.getDefaultValue()
-  }
-  util.inherits(Characteristic.WindRangeCharacteristic, Characteristic)
-
-  Service.WindRangeService = function (displayName, subtype) {
-    var servUUID = uuid.generate('HomeMatic:customchar:WindRangeService')
-    Service.call(this, displayName, servUUID, subtype)
-    this.addCharacteristic(Characteristic.WindRangeCharacteristic)
+        unit: 'Grad',
+        perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
+      })
+      this.value = this.getDefaultValue()
+    }
   }
 
-  util.inherits(Service.WindRangeService, Service)
+  Service.WindRangeService = class extends Service {
+    constructor (displayName, subtype) {
+      var servUUID = uuid.generate('HomeMatic:customchar:WindRangeService')
+      super(displayName, servUUID, subtype)
+      this.addCharacteristic(Characteristic.WindRangeCharacteristic)
+    }
+  }
 }
 
 HomeMaticHomeKitWeatherStationService.prototype.createDeviceService = function (Service, Characteristic) {

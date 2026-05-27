@@ -12,25 +12,25 @@ util.inherits(HomeMaticHomeKitRaindetectorService, HomeKitGenericService)
 HomeMaticHomeKitRaindetectorService.prototype.propagateServices = function (homebridge, Service, Characteristic) {
   var uuid = homebridge.uuid
 
-  Characteristic.IsRainingCharacteristic = function () {
-    var charUUID = uuid.generate('HomeMatic:customchar:IsRainingCharacteristic')
-    Characteristic.call(this, 'Regen', charUUID)
-    this.setProps({
-      format: Characteristic.Formats.BOOL,
-      perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
-    })
-    this.value = this.getDefaultValue()
+  Characteristic.IsRainingCharacteristic = class extends Characteristic {
+    constructor () {
+      var charUUID = uuid.generate('HomeMatic:customchar:IsRainingCharacteristic')
+      super('Regen', charUUID)
+      this.setProps({
+        format: Characteristic.Formats.BOOL,
+        perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
+      })
+      this.value = this.getDefaultValue()
+    }
   }
 
-  util.inherits(Characteristic.IsRainingCharacteristic, Characteristic)
-
-  Service.IsRainingService = function (displayName, subtype) {
-    var servUUID = uuid.generate('HomeMatic:customchar:IsRainingService')
-    Service.call(this, displayName, servUUID, subtype)
-    this.addCharacteristic(Characteristic.IsRainingCharacteristic)
+  Service.IsRainingService = class extends Service {
+    constructor (displayName, subtype) {
+      var servUUID = uuid.generate('HomeMatic:customchar:IsRainingService')
+      super(displayName, servUUID, subtype)
+      this.addCharacteristic(Characteristic.IsRainingCharacteristic)
+    }
   }
-
-  util.inherits(Service.IsRainingService, Service)
 }
 
 HomeMaticHomeKitRaindetectorService.prototype.createDeviceService = function (Service, Characteristic) {
